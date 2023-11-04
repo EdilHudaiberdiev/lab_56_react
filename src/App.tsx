@@ -63,22 +63,29 @@ function App() {
         </div>
 
 
-        <div className="totalPrice">Price {price}</div>
-        {goods.map(item => {
-          if(item.count > 0) {
-            return (
-              <div key={item.id} className="goods" >
-                <p>{item.name} x</p>
-                <p>   {item.count}</p>
-                <p className="priceString">{item.price * item.count}</p>
-                <button onClick={() => deleteClick(item.id)} type="button">X</button>
-              </div>
-            )
-          }
+        {price > 0 ?
+          <>
+            {goods.map(item => {
+                if(item.count > 0) {
+                  return (
+                    <div key={item.id} className="goods" >
+                      <p>{item.name} x</p>
+                      <p>   {item.count}</p>
+                      <p className="priceString">{item.price * item.count}</p>
+                      <button onClick={() => deleteClick(item.id)} type="button">X</button>
+                    </div>
+                  )
+                }
+              }
+            )}
+
+            <div className="totalPrice">Price {price}</div>
+          </>
+          :
+          <>
+          <p>order is empty</p>
+          </>
         }
-
-
-     )}
 
       </div>
     </>

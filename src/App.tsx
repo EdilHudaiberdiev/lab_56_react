@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import mealImg from './assets/meal.png'
 import drinkImg from './assets/drink.png'
-import Good from './components/Good_component/Good';
-import './App.css'
-import OrderItem from './components/OrderItem_component/OrderItem';
+import Good from './components/Good/Good';
+import './App.css';
+import OrderItem from './components/OrderItem/OrderItem';
+import Price from './components/Price/Price';
 
 interface goodsInterface {
   name: string;
@@ -13,7 +14,7 @@ interface goodsInterface {
   price: number;
 }
 
-function App() {
+const App = () => {
   const [goods, setGoods] = useState<goodsInterface[]>([
     {img: mealImg,  name: "Hamburger", count: 0, id: 1, price: 80},
     {img: drinkImg,  name: "Tea", count: 0, id: 5, price: 50},
@@ -34,7 +35,7 @@ function App() {
         }
       }
       return item;
-    }))
+    }));
   };
 
   const deleteClick = (id: number) => {
@@ -47,7 +48,7 @@ function App() {
         }
       }
       return item;
-    }))
+    }));
   };
 
   return (
@@ -64,28 +65,27 @@ function App() {
 
           {price > 0 ?
             <>
-            <div className="orderList">
+              <div className="orderList">
 
-              {goods.map(item => {
-                  if(item.count > 0) {
-                    return (
-                      <OrderItem key={item.id}  item={item} deleteClick={deleteClick} />
-                    )
+                {goods.map(item => {
+                    if(item.count > 0) {
+                      return (
+                        <OrderItem key={item.id}  item={item} deleteClick={deleteClick} />
+                      )
+                    }
                   }
-                }
-              )}
-            </div>
+                )}
+              </div>
+              <Price number={price}/>
             </>
             :
             <>
               <p>order is empty</p>
             </>
           }
-
-        <div className="totalPrice">Price {price}</div>
       </div>
     </>
   )
-}
+};
 
 export default App

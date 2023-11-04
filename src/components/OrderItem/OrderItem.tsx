@@ -13,7 +13,7 @@ interface Props {
 }
 const OrderItem: React.FC<Props>  = ({item, deleteClick}) => {
   return (
-      <div key={item.id} className="order" >
+      <div className="order" >
         <p>{item.name} x</p>
         <p>   {item.count}</p>
         <p className="priceString">  {item.price * item.count}</p>

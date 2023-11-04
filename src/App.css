@@ -65,5 +65,6 @@
 .button {
   background: inherit;
   font-weight: bold;
+  margin-right: 5px;
 }
 
